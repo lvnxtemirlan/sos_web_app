@@ -1,0 +1,59 @@
+{% load static %}
+
+
+
+<main>
+    {% if user.is_authenticated %}
+    <p class="main-text">
+        Если вы нуждаетесь в помощи, заполните эти формы, и этот пост будет опубликован на SOS, в канале <a href="#" class="main-link">Telegram</a>, на платформах: <a href="#" class="main-link">ВКонтакте</a>, <a href="#" class="main-link">Инстаграм</a>, а также на <a href="#" class="main-link">Facebook</a>
+    </p>
+    <form id="contact" action="" method="post">
+        <div class="inputs">
+                <input placeholder="Aty" type="text" tabindex="1" required>
+                <input placeholder="Tegi" type="text" tabindex="2" required>
+                <input placeholder="Nomeri" type="tel" tabindex="3" required>
+                <input type="text" autocomplete="on">
+                <ul class="form-select">
+                    <li></li>
+                </ul>
+                <div class="custom-select">
+                    <select>
+                      <option value="0">Select Region</option>
+                      <option value="1">Jambyl</option>
+                      <option value="2">Semey</option>
+                      <option value="3">Nur-sultan</option>
+                      <option value="4">Almaty</option>
+                    </select>
+                  </div>
+        </div>
+        <textarea placeholder="Sipattama" tabindex="5" required></textarea>
+        <div class="form-buttons">
+                <button type="button" class="add-photo"><span class="iconify" data-icon="simple-line-icons:paper-clip" data-inline="false" data-rotate="180deg"></span></button>
+                <button name="submit" type="submit" id="contact-submit" data-submit="...Sending"><span class="iconify" data-icon="ic:round-send" data-inline="false"></span></button>
+        </div>
+    </form>
+    <p href="#" class="main-link">Сообщение будет отправлено благотварительным фондам</p>
+
+<!--    <div class="news-feed">-->
+<!--        <div class="post">-->
+<!--            <div class="post-leftside">-->
+<!--                <div class="account">-->
+<!--                    <img src="#" alt="" class="account-logo">-->
+<!--                    <div class="account-text">-->
+<!--                        <p class="account-name">-->
+<!--                            Shilibekov Ansar-->
+<!--                        </p>-->
+<!--                        <p class="post-time">15:00  28.02.2020</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="post-description">Возле меня живет женщина-инвалид, которой требуется материальная помощь в виде продуктов и одежды. В  силу своей неработоспособности она не имеет возможности зарабатывать и обеспечивать себя всеми нужными вещами. Ее пособия хватает только на ком. услуги, лекарства и немного еды. Прошу помочь.</div>-->
+<!--            </div>-->
+<!--            <img class="post-images" src="#" alt="">-->
+<!--            <button class="post-button">-->
+<!--                <span class="iconify" data-icon="fa-solid:hand-holding-heart" data-inline="false"></span>-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </div>-->
+    {% else %}
+    {% endif %}
+</main>

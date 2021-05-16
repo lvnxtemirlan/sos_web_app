@@ -1,0 +1,41 @@
+{% load static %}
+
+{% if user.is_authenticated %}
+<header style="height: unset; grid-template-rows: .1fr;">
+{% else %}
+<header>
+{% endif %}
+    <h1 class="title">
+        Save Our Souls
+    </h1>
+    <nav class="navigation">
+        <ul>
+            {% if user.is_authenticated %}
+            <li class="navigation-item">
+                <a href="{% url 'logout' %}" class="navigation-item__link">
+                    Выйти
+                </a>
+            </li>
+            {% else %}
+            <li class="navigation-item">
+                <a href="{% url 'signup'%}" class="navigation-item__link">
+                    Зарегистроваться
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a href="{% url 'login' %}" class="navigation-item__link">
+                    Войти
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% if user.is_authenticated %}
+<!--    <hr>-->
+    {% else %}
+    <img class="header-logo" style="" src="{% static 'signin/img/SOS2.png' %}" alt="logo">
+    <p class="header-text">
+        SOS создан для людей в виде моральной, материальной и поисковой помощи.
+    </p>
+    {% endif %}
+</header>

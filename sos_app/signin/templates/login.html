@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'signin/css/login.css'%}">
+{% endblock %}
+
+{% block content %}
+    <main>
+        <h1>Save our souls</h1>
+        {% if form.errors %}
+            <p style="color: red">Your username and password didn't match. Please try again.</p>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+<!--            {{ form.username.label_tag }}-->
+            <input style="color: grey" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" placeholder="Name">
+            {% for error in form.username.errors %}
+            <p style="color: red">{{ error }}</p>
+            {% endfor %}
+            {% if form.username.help_text %}
+              <p><small style="color: grey">{{ field.help_text }}</small></p>
+            {% endif %}
+<!--            {{ form.password.label_tag }}-->
+            <input type="password" class="form-control" name="password" autocomplete="current-password" required="" id="id_password" placeholder="Password *">
+            {% for error in form.password.errors %}
+              <p style="color: red">{{ error }}</p>
+            {% endfor %}
+            {% if form.password.help_text %}
+              <p><small style="color: grey">{{ field.help_text }}</small></p>
+            {% endif %}
+            <button class="login-btn" type="submit">Login</button>
+        </form>
+        <div class="footer-links">
+            <a href="{% url 'signup' %}" class="link">Have no account?</a>
+            <a href="{% url 'home' %}" class="link">Home</a>
+        </div>
+    </main>
+{% endblock %}

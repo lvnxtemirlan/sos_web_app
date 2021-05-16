@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'signin/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'signin/css/adaptive.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="preloader">
+        <div class="pulse"></div>
+    </div>
+        {% include 'navbar.html' %}
+        {% include 'card.html' %}
+        {% include 'footer.html' %}
+
+<script src="{% static 'signin/js/main.js' %}"></script>
+<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    window.onload = function () {
+      document.body.classList.add('loaded_hiding');
+      window.setTimeout(function () {
+        document.body.classList.add('loaded');
+        document.body.classList.remove('loaded_hiding');
+      }, 1500);
+    }
+</script>
+{% endblock %}
