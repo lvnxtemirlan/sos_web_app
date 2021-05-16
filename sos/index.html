@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/adaptive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <title>Save Our Souls</title>
+</head>
+<body>
+    <div class="preloader">
+        <div class="pulse"></div>
+    </div>
+        <header>
+            <h1 class="title">
+                Save Our Souls
+            </h1>
+            <nav class="navigation">
+                <ul>
+                    <li class="navigation-item">
+                        <a href="" class="navigation-item__link">
+                            Зарегистроваться
+                        </a>
+                    </li>
+                    <li class="navigation-item">
+                        <a href="login.html" class="navigation-item__link">
+                            Войти
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <img class="header-logo" src="img/SOS2.png" alt="logo">
+            <p class="header-text">
+                SOS создан для людей в виде моральной, материальной и поисковой помощи. 
+            </p>
+        </header>
+        <main>
+            <p class="main-text">
+                Если вы нуждаетесь в помощи, заполните эти формы, и этот пост будет опубликован на SOS, в канале <a href="#" class="main-link">Telegram</a>, на платформах: <a href="#" class="main-link">ВКонтакте</a>, <a href="#" class="main-link">Инстаграм</a>, а также на <a href="#" class="main-link">Facebook</a>
+            </p>
+            <form id="contact" action="" method="post">
+                <div class="inputs">
+                        <input placeholder="Aty" type="text" tabindex="1" required>
+                        <input placeholder="Tegi" type="text" tabindex="2" required>
+                        <input placeholder="Nomeri" type="tel" tabindex="3" required>
+                        <input type="text" autocomplete="on">
+                        <ul class="form-select">
+                            <li></li>
+                        </ul>
+                        <div class="custom-select">
+                            <select>
+                              <option value="0">Select Region</option>
+                              <option value="1">Jambyl</option>
+                              <option value="2">Semey</option>
+                              <option value="3">Nur-sultan</option>
+                              <option value="4">Almaty</option>
+                            </select>
+                          </div>
+                </div>
+                <textarea placeholder="Sipattama" tabindex="5" required></textarea>
+                <div class="form-buttons">
+                        <button type="button" class="add-photo"><span class="iconify" data-icon="simple-line-icons:paper-clip" data-inline="false" data-rotate="180deg"></span></button>
+                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending"><span class="iconify" data-icon="ic:round-send" data-inline="false"></span></button>
+                </div>
+            </form>
+            <p href="#" class="main-link">Сообщение будет отправлено благотварительным фондам</p>
+
+            <div class="news-feed">
+                <div class="post">
+                    <div class="post-leftside">
+                        <div class="account">
+                            <img src="#" alt="" class="account-logo">
+                            <div class="account-text">
+                                <p class="account-name">
+                                    Shilibekov Ansar
+                                </p>
+                                <p class="post-time">15:00  28.02.2020</p>
+                            </div>
+                        </div>
+                        <div class="post-description">Возле меня живет женщина-инвалид, которой требуется материальная помощь в виде продуктов и одежды. В  силу своей неработоспособности она не имеет возможности зарабатывать и обеспечивать себя всеми нужными вещами. Ее пособия хватает только на ком. услуги, лекарства и немного еды. Прошу помочь.</div>
+                    </div>
+                    <img class="post-images" src="#" alt="">
+                    <button class="post-button">
+                        <span class="iconify" data-icon="fa-solid:hand-holding-heart" data-inline="false"></span>
+                    </button>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-icons">
+                <div href="#" class="footer-link"><span class="iconify" data-icon="entypo-social:vk-with-circle" data-inline="false"></span></div>
+                <div href="#" class="footer-link"><span class="iconify" data-icon="fa-brands:telegram" data-inline="false"></span></div>
+                <div href="#" class="footer-link"><span class="iconify" data-icon="entypo-social:instagram-with-circle" data-inline="false"></span></div>
+                <div href="#" class="footer-link"><span class="iconify" data-icon="fa-brands:facebook" data-inline="false"></span></div>
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-mail-link">save.our.souls.kz@gmail.com</a>
+                <p class="footer-creators">Powered by @Positive Tech</p>
+            </div>
+        </footer>
+</body>
+<script src="js/main.js"></script>
+<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    window.onload = function () {
+      document.body.classList.add('loaded_hiding');
+      window.setTimeout(function () {
+        document.body.classList.add('loaded');
+        document.body.classList.remove('loaded_hiding');
+      }, 1500);
+    }
+</script>
+</html>
