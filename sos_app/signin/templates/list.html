@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'signin/css/list.css' %}">
+    <link rel="stylesheet" href="{% static 'signin/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'signin/css/adaptive.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+{% endblock %}
+
+{% block title %}
+    <title>Save Our Souls</title>
+{% endblock %}
+
+{% block content %}
+    {% include 'navbar.html' %}
+    <div class="preloader">
+        <div class="pulse"></div>
+    </div>
+        <main>
+            <h2>Список карт</h2>
+            <ul class="main-list">
+                {% for card in cards %}
+                <li class="main-list__item">
+                    <p class="list-item__text number">
+                        {{ card.card_number }}
+                    </p>
+                    <p class="list-item__text">
+                        {{ card.card_last_name }}
+
+                    </p>
+                    <p class="list-item__text">
+                        {{ card.card_first_name }}
+                    </p>
+                    <p class="list-item__text">
+                        {{ card.card_created }}
+                    </p>
+                    <p class="list-item__text">
+                        {{ card.card_region }}
+                    <p class="list-item__text">
+                        {{ card.card_phone_number }}
+                    </p>
+                    <a href="view/{{ card.card_relation }}" class="list-item__button">
+                        Подробнее
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </main>
+    {% include 'footer.html' %}
+{% endblock %}
+
+{% block javascript %}
+<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+window.onload = function () {
+  document.body.classList.add('loaded_hiding');
+  window.setTimeout(function () {
+    document.body.classList.add('loaded');
+    document.body.classList.remove('loaded_hiding');
+  }, 1500);
+}
+</script>
+<script src="{% static 'signin/js/main.js' %}"></script>
+{% endblock %}

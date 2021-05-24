@@ -15,7 +15,7 @@
 <!--                {{ form.username.label_tag }}-->
                 <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username" placeholder="User name">
                 {% if form.username.help_text %}
-                  <small style="color: grey">{{ form.username.help_text }}</small>
+                  <small>{{ form.username.help_text }}</small>
                 {% endif %}
                 {% for error in form.username.errors %}
                   <p style="color: red">{{ error }}</p>
@@ -23,7 +23,7 @@
 <!--                {{ form.first_name.label_tag }}-->
                 <input type="text" name="first_name" maxlength="30" id="id_first_name" placeholder="First name:">
                  {% if form.first_name.help_text %}
-                  <small style="color: grey">{{ form.first_name.help_text }}</small>
+                  <small>{{ form.first_name.help_text }}</small>
                 {% endif %}
                 {% for error in form.first_name.errors %}
                   <p style="color: red">{{ error }}</p>
@@ -31,7 +31,7 @@
 <!--                {{ form.last_name.label_tag }}-->
                 <input type="text" name="last_name" maxlength="30" id="id_last_name" placeholder="Last name" >
                  {% if form.last_name.help_text %}
-                  <small style="color: grey">{{ form.last_name.help_text }}</small>
+                  <small>{{ form.last_name.help_text }}</small>
                 {% endif %}
                 {% for error in form.last_name.errors %}
                   <p style="color: red">{{ error }}</p>
@@ -39,7 +39,7 @@
 <!--                {{ form.email.label_tag }}-->
                 <input type="email" required id="id_email" maxlength="254" name="email" placeholder="Email">
                  {% if form.email.help_text %}
-                  <small style="color: grey">{{ form.email.help_text }}</small>
+                  <small>{{ form.email.help_text }}</small>
                 {% endif %}
                 {% for error in form.email.errors %}
                   <p style="color: red">{{ error }}</p>
@@ -47,7 +47,7 @@
 <!--                {{ form.password1.label_tag }}-->
                 <input type="password" required id="id_password1" name="password1" placeholder="Password" autocomplete="new-password" aria-placeholder="Password">
                 {% if form.password1.help_text %}
-                  <small style="color: grey">{{ form.password1.help_text }}</small>
+                  <small>{{ form.password1.help_text }}</small>
                 {% endif %}
                 {% for error in form.password1.errors %}
                   <p style="color: red">{{ error }}</p>
@@ -55,7 +55,7 @@
 <!--                {{ form.password2.label_tag }}-->
                 <input type="password" required id="id_password2" name="password2" placeholder="Password confirmation" autocomplete="new-password">
                 {% if form.password2.help_text %}
-                  <small style="color: grey">{{ form.password2.help_text }}</small>
+                  <small>{{ form.password2.help_text }}</small>
                 {% endif %}
                 {% for error in form.password2.errors %}
                   <p style="color: red">{{ error }}</p>

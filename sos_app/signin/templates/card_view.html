@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'signin/css/card.css' %}">
+    <link rel="stylesheet" href="{% static 'signin/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'signin/css/adaptive.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+    <div class="preloader">
+        <div class="pulse"></div>
+    </div>
+        <main>
+            <section class="card">
+                <h1 class="card-name">
+                    {{ card.fields.card_first_name }} {{ card.fields.card_last_name }}
+                </h1>
+                <div class="card-list">
+                    <p class="card-list__item">
+                        Имя: {{ card.fields.card_first_name }}
+                    </p>
+                    <p class="card-list__item">
+                        Фамилия: {{ card.fields.card_last_name }}
+                    </p>
+                    <p class="card-list__item">
+                        Номер телефона: {{ card.fields.card_phone_number }}
+                    </p>
+                    <p class="card-list__item">
+                        Город: {{ card.fields.card_region }}
+                    </p>
+                    <p class="card-list__item">
+                        Создано: {{ card.fields.uploaded_at }}
+                    </p>
+                </div>
+                <div class="card-list__sidebar">
+                    <img src="{{ picture.url  }}" alt="Ass" class="card-list__img">
+                    {% for market in sender_market %}
+                    <div class="card-list__block">
+                        <button class="card-list__button" onclick="sendSender({{user.id}}, {{market.fields.service_id}}, {{ card.fields.relation }})">{{ market.fields.name }}</button>
+                            {% if market.fields.is_sended == '1' %}
+                                <p class="card-list__alert" style="color: green;" >
+                                    Отправлено
+                                </p>
+                            {% else %}
+                                <p class="card-list__alert" style="color: red;">
+                                    Не отправлено
+                                </p>
+                            {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+{% endblock %}
+{% block javascript %}
+<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+window.onload = function () {
+  document.body.classList.add('loaded_hiding');
+  window.setTimeout(function () {
+    document.body.classList.add('loaded');
+    document.body.classList.remove('loaded_hiding');
+  }, 1500);
+}
+</script>
+<script src="{% static 'signin/js/main.js' %}"></script>
+{% endblock %}

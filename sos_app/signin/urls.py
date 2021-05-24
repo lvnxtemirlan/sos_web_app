@@ -16,4 +16,9 @@ urlpatterns = [
         name="logout",
     ),
     url(r"^signup/$", core_views.signup, name="signup"),
+    url(r"^add/card$", core_views.add_card, name="add_card"),
+    url(r"^add/image$", core_views.add_image, name="add_image"),
+    url(r"^list/$", core_views.card, name="list"),
+    url(r"^list/view/(?P<relation>\d+)$", core_views.card_view, name="card_view"),
+    url(r"^list/view/send/service$", core_views.send_services, name="send_card")
 ]

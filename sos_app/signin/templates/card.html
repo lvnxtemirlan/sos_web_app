@@ -1,35 +1,33 @@
 {% load static %}
 
-
-
 <main>
     {% if user.is_authenticated %}
     <p class="main-text">
+
+        {% csrf_token %}
         Если вы нуждаетесь в помощи, заполните эти формы, и этот пост будет опубликован на SOS, в канале <a href="#" class="main-link">Telegram</a>, на платформах: <a href="#" class="main-link">ВКонтакте</a>, <a href="#" class="main-link">Инстаграм</a>, а также на <a href="#" class="main-link">Facebook</a>
     </p>
-    <form id="contact" action="" method="post">
+    <form id="contact">
+<!--        {% csrf_token %}-->
         <div class="inputs">
-                <input placeholder="Aty" type="text" tabindex="1" required>
-                <input placeholder="Tegi" type="text" tabindex="2" required>
-                <input placeholder="Nomeri" type="tel" tabindex="3" required>
-                <input type="text" autocomplete="on">
-                <ul class="form-select">
-                    <li></li>
-                </ul>
+
+                <input name="card_first_name" placeholder="Aty" type="text" tabindex="1" autocomplete="off" required>
+                <input name="card_last_name" placeholder="Tegi" type="text" tabindex="2" autocomplete="off" required>
+                <input name="card_phone_number" placeholder="Nomeri" type="tel" tabindex="3" autocomplete="off" required>
                 <div class="custom-select">
-                    <select>
+                    <select name="card_region">
                       <option value="0">Select Region</option>
-                      <option value="1">Jambyl</option>
-                      <option value="2">Semey</option>
-                      <option value="3">Nur-sultan</option>
-                      <option value="4">Almaty</option>
+                        {% for field in region %}
+                        <option value="{{ field.region_id }}">{{ field.name }}</option>
+                        {% endfor %}
                     </select>
                   </div>
+
         </div>
-        <textarea placeholder="Sipattama" tabindex="5" required></textarea>
+        <textarea name="card_desc" placeholder="Sipattama" tabindex="5" autocomplete="off" required></textarea>
         <div class="form-buttons">
-                <button type="button" class="add-photo"><span class="iconify" data-icon="simple-line-icons:paper-clip" data-inline="false" data-rotate="180deg"></span></button>
-                <button name="submit" type="submit" id="contact-submit" data-submit="...Sending"><span class="iconify" data-icon="ic:round-send" data-inline="false"></span></button>
+                <input name="card_file" id="image-file" type="file" class="add-photo"><span class="iconify" data-icon="simple-line-icons:paper-clip" data-inline="false" data-rotate="180deg"></span></input>
+                <button name="submit" id="contact-submit" data-submit="...Sending" onclick="recordCard({{ user.id }})"><span class="iconify" data-icon="ic:round-send" data-inline="false"></span></button>
         </div>
     </form>
     <p href="#" class="main-link">Сообщение будет отправлено благотварительным фондам</p>
@@ -57,3 +55,18 @@
     {% else %}
     {% endif %}
 </main>
+
+{% block javascript %}
+<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+window.onload = function () {
+  document.body.classList.add('loaded_hiding');
+  window.setTimeout(function () {
+    document.body.classList.add('loaded');
+    document.body.classList.remove('loaded_hiding');
+  }, 1500);
+}
+</script>
+<script src="{% static 'signin/js/main.js' %}"></script>
+{% endblock %}

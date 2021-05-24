@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Picture, Card, Sender
 
 
 class SignUpForm(UserCreationForm):
@@ -20,3 +21,29 @@ class SignUpForm(UserCreationForm):
             "password1",
             "password2",
         )
+
+
+class PictureForm(forms.ModelForm):
+    user_id = forms.IntegerField()
+
+    class Meta:
+        model = Picture
+        fields = ['user_id', 'relation', 'image']
+
+
+class CardForm(forms.ModelForm):
+    user_id = forms.IntegerField()
+
+    class Meta:
+        model = Card
+        fields = ["user_id", "card_first_name", "card_last_name", "card_phone_number", "card_region", "relation"]
+
+
+class ServiceForm(forms.ModelForm):
+    user_id = forms.CharField()
+    service_id = forms.CharField()
+    relation = forms.CharField()
+
+    class Meta:
+        model = Sender
+        fields = ["user_id", "service_id", "relation"]

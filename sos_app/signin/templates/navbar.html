@@ -12,6 +12,16 @@
         <ul>
             {% if user.is_authenticated %}
             <li class="navigation-item">
+                <a href="{% url 'list' %}" class="navigation-item__link">
+                    Список карт
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a href="{% url 'home' %}" class="navigation-item__link">
+                    Создать карту
+                </a>
+            </li>
+            <li class="navigation-item">
                 <a href="{% url 'logout' %}" class="navigation-item__link">
                     Выйти
                 </a>
