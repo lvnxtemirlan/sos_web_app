@@ -14,7 +14,7 @@ msg = MIMEMultipart()
 def send_email(to_client, message, image_path):
     msg['From'] = MY_ADDRESS
     msg['To'] = to_client
-    msg['Subject'] = Header('SOS WEB APP', 'utf-8').encode()
+    msg['Subject'] = Header('SAVE OUR SOULS QAZAQSTAN', 'utf-8').encode()
     # attache a MIMEText object to save email content
     msg_content = MIMEText(message, 'plain', 'utf-8')
     msg.attach(msg_content)
@@ -39,3 +39,5 @@ def send_email(to_client, message, image_path):
 
     conn.sendmail(MY_ADDRESS, to_client, msg.as_string())
     conn.quit()
+
+send_email("ashimkhan.temirlan@gmail.com","<h2>dsafas</h2>dfasdfa", "/home/devtima/practice/sos_web_app/sos_app/media/1566974630169263977.webp")

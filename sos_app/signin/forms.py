@@ -36,7 +36,7 @@ class CardForm(forms.ModelForm):
 
     class Meta:
         model = Card
-        fields = ["user_id", "card_first_name", "card_last_name", "card_phone_number", "card_region", "relation"]
+        fields = ["user_id", "card_first_name", "card_last_name", "card_text", "card_phone_number", "card_region", "relation"]
 
 
 class ServiceForm(forms.ModelForm):

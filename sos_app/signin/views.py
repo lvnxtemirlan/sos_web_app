@@ -61,6 +61,8 @@ def card_view(request, relation):
     c = Card.objects.get(relation=relation)
     p = Picture.objects.get(relation=relation)
     s = SenderMarkets.objects.all()
+    r = Region.objects.all()
+    regions = {repr(i.region_id): i.name for i in r}
     try:
         ss = Sender.objects.all().filter(relation=relation)
         sender_serialized = serializers.serialize("json", ss)
@@ -85,9 +87,7 @@ def card_view(request, relation):
             market["fields"]["is_sended"] = "1"
         else:
             market["fields"]["is_sended"] = "0"
-    print(sender)
-    print("card", card)
-    print("picture", picture)
+    card["fields"]["card_region"] = regions.get(card["fields"]["card_region"])
     return render(request, "card_view.html", {"card": card, "picture": picture, "sender_market": sender_market})
 
 
@@ -119,8 +119,20 @@ def send_telegram(relation):
     sender = json.loads(sender_serialized)
     print(sender)
     alert = Alerter(chat_id=TELEGRAM_CHAT_ID)
-    alert.send_photo(msg=f"Нужна помощь!!! \nДля {c.card_last_name} {c.card_first_name} \n"
-                         f"По номеру: {c.card_phone_number} \n", image_path=p.image.path)
+
+    response = alert.send_photo(msg=f"[SAVE OUR SOULS](http://space.454219-ca80776.tmweb.ru:8070/sos/)\n"
+                                    f"*{c.card_last_name} {c.card_first_name}* ищет помощи от всех неравнодушных людей\n"
+                                    f"*Описание*\n"
+                                    f"{c.card_text}\n"
+                                    f"*Контактные данные*\n"
+                                    f"номер: {c.card_phone_number}\n"
+                                    f"*Адресс: *{regions.get(c.card_region)}\n"
+                                    f"Все вопросы можете задать в личку [Шилибеков Ансару](tg://user?id=680891323)",
+                                image_path=p.image.path)
+    if response.status_code == 200:
+        Sender.objects.filter(relation=relation, service_id=1).update(is_sended="1")
+    else:
+        Sender.objects.filter(relation=relation, service_id=1).delete()
 
 
 
@@ -130,9 +142,6 @@ def add_image(request):
     form = PictureForm()
     if request.method == "POST":
         form = PictureForm(request.POST, request.FILES)
-        print("POST", request.POST)
-        print("FILES", request.FILES)
-        print(form, form.is_valid(), "form_image")
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
@@ -162,7 +171,7 @@ def add_card(request):
         else:
             print("Add card form is not valid")
             data["form_is_valid"] = False
-            return  JsonResponse(data)
+            return JsonResponse(data)
 
     data = {}
     return render(request, "home.html", {"form": {}})

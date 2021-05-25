@@ -101,7 +101,7 @@ var recordCard = function(number) {
     formData.append("card_last_name", data.card_last_name);
     formData.append("card_phone_number", data.card_phone_number);
     formData.append("card_region", data.card_region);
-    formData.append("card_desc", data.card_desc);
+    formData.append("card_text", data.card_desc);
     formData.append("relation", relation);
     var request = new Request(
     "add/card",

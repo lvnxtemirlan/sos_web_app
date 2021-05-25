@@ -24,8 +24,9 @@ class Alerter:
         payload = {
             "chat_id": self.chat_id,
             "text": msg,
-            "caption": msg
+            "caption": msg,
+            "parse_mode": "markdown"
         }
         with open(image_path, "rb") as image_file:
-            response = requests.post(f"https://api.telegram.org/bot{self.api_token}/sendPhoto", data=payload, files={"photo": image_file}).status_code
+            response = requests.post(f"https://api.telegram.org/bot{self.api_token}/sendPhoto", data=payload, files={"photo": image_file})
         return response
