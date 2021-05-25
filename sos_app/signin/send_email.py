@@ -40,4 +40,4 @@ def send_email(to_client, message, image_path):
     conn.sendmail(MY_ADDRESS, to_client, msg.as_string())
     conn.quit()
 
-send_email("ashimkhan.temirlan@gmail.com","<h2>dsafas</h2>dfasdfa", "/home/devtima/practice/sos_web_app/sos_app/media/1566974630169263977.webp")
+# send_email("ashimkhan.temirlan@gmail.com","<h2>dsafas</h2>dfasdfa", "/home/devtima/practice/sos_web_app/sos_app/media/1566974630169263977.webp")
