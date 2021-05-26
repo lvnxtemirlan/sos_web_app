@@ -39,7 +39,7 @@ class SenderMarkets(models.Model):
 
 class Sender(models.Model):
     user_id = models.IntegerField()
-    service_id = models.OneToOneField(SenderMarkets, on_delete=models.CASCADE)
+    service_id = models.IntegerField()
     relation = models.CharField(max_length=255, default="")
     is_sended = models.CharField(max_length=255, default="0")
 

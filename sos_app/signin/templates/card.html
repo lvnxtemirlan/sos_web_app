@@ -24,7 +24,7 @@
                   </div>
 
         </div>
-        <textarea name="card_desc" placeholder="Sipattama" tabindex="5" autocomplete="off" required></textarea>
+        <textarea maxlength="600" name="card_desc" placeholder="Sipattama" tabindex="5" autocomplete="off" required></textarea>
         <div class="form-buttons">
                 <input name="card_file" id="image-file" type="file" class="add-photo"><span class="iconify" data-icon="simple-line-icons:paper-clip" data-inline="false" data-rotate="180deg"></span></input>
                 <button name="submit" id="contact-submit" data-submit="...Sending" onclick="recordCard({{ user.id }})"><span class="iconify" data-icon="ic:round-send" data-inline="false"></span></button>

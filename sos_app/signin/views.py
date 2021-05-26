@@ -94,45 +94,52 @@ def card_view(request, relation):
 def send_services(request):
     data = {}
     if request.method == "POST":
-        form = ServiceForm(request.POST)
-        if form.is_valid():
-            form.save()
-            data['form_is_valid'] = True
-            send_telegram(request.POST.get("relation"))
+        try:
+            sender = Sender.objects.get(relation=request.POST.get("relation"), service_id=int(request.POST.get("service_id")))
+            return JsonResponse(data)
+        except Exception as e:
+            print(e, "error")
+            form = ServiceForm(request.POST)
+            if form.is_valid():
+                print(form.is_valid(), "form", form.errors, "\n ", form)
+                form.save()
+                data['form_is_valid'] = True
+                send_telegram(request.POST.get("relation"))
 
-            return JsonResponse(data)
-        else:
-            data['form_is_valid'] = False
-            return JsonResponse(data)
+                return JsonResponse(data)
+            else:
+                data['form_is_valid'] = False
+                return JsonResponse(data)
 
 
 def send_telegram(relation):
-    c = Card.objects.get(relation=relation)
-    p = Picture.objects.get(relation=relation)
-    r = Region.objects.all()
-    regions = {repr(i.region_id): i.name for i in r}
     try:
         ss = Sender.objects.get(relation=relation, is_sended="0", service_id=1)
-    except:
-        ss = []
-    sender_serialized = serializers.serialize("json", [ss, ])
-    sender = json.loads(sender_serialized)
-    print(sender)
-    alert = Alerter(chat_id=TELEGRAM_CHAT_ID)
+        sender_serialized = serializers.serialize("json", [ss, ])
+        sender = json.loads(sender_serialized)
+        c = Card.objects.get(relation=relation)
+        p = Picture.objects.get(relation=relation)
+        r = Region.objects.all()
+        regions = {repr(i.region_id): i.name for i in r}
+        alert = Alerter(chat_id=TELEGRAM_CHAT_ID)
 
-    response = alert.send_photo(msg=f"[SAVE OUR SOULS](http://space.454219-ca80776.tmweb.ru:8070/sos/)\n"
-                                    f"*{c.card_last_name} {c.card_first_name}* ищет помощи от всех неравнодушных людей\n"
-                                    f"*Описание*\n"
-                                    f"{c.card_text}\n"
-                                    f"*Контактные данные*\n"
-                                    f"номер: {c.card_phone_number}\n"
-                                    f"*Адресс: *{regions.get(c.card_region)}\n"
-                                    f"Все вопросы можете задать в личку [Шилибеков Ансару](tg://user?id=680891323)",
-                                image_path=p.image.path)
-    if response.status_code == 200:
-        Sender.objects.filter(relation=relation, service_id=1).update(is_sended="1")
-    else:
-        Sender.objects.filter(relation=relation, service_id=1).delete()
+        response = alert.send_photo(msg=f"[SAVE OUR SOULS](http://space.454219-ca80776.tmweb.ru:8070/sos/)\n"
+                                        f"*{c.card_last_name} {c.card_first_name}* ищет помощи от всех неравнодушных людей\n"
+                                        f"*Описание*\n"
+                                        f"{c.card_text}\n"
+                                        f"*Контактные данные*\n"
+                                        f"номер: {c.card_phone_number}\n"
+                                        f"*Адресс: *{regions.get(c.card_region)}\n"
+                                        f"Все вопросы можете задать в личку [Шилибеков Ансару](tg://user?id=680891323)",
+                                    image_path=p.image.path)
+        print(response.text)
+        if response.status_code == 200:
+            Sender.objects.filter(relation=relation, service_id=1).update(is_sended="1")
+        else:
+            Sender.objects.filter(relation=relation, service_id=1).delete()
+    except Exception as e:
+        print(e, "error tele")
+        pass
 
 
 
