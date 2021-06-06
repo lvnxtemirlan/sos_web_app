@@ -15,8 +15,8 @@
                 <input name="card_last_name" placeholder="Tegi" type="text" tabindex="2" autocomplete="off" required>
                 <input name="card_phone_number" placeholder="Nomeri" type="tel" tabindex="3" autocomplete="off" required>
                 <div class="custom-select">
-                    <select name="card_region">
-                      <option value="0">Select Region</option>
+                    <select name="card_region" class="card_region">
+<!--                      <option value="0">Select Region</option>-->
                         {% for field in region %}
                         <option value="{{ field.region_id }}">{{ field.name }}</option>
                         {% endfor %}
@@ -56,17 +56,17 @@
     {% endif %}
 </main>
 
-{% block javascript %}
-<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-window.onload = function () {
-  document.body.classList.add('loaded_hiding');
-  window.setTimeout(function () {
-    document.body.classList.add('loaded');
-    document.body.classList.remove('loaded_hiding');
-  }, 1500);
-}
-</script>
-<script src="{% static 'signin/js/main.js' %}"></script>
-{% endblock %}
+<!--{% block javascript %}-->
+<!--<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<!--<script>-->
+<!--window.onload = function () {-->
+<!--  document.body.classList.add('loaded_hiding');-->
+<!--  window.setTimeout(function () {-->
+<!--    document.body.classList.add('loaded');-->
+<!--    document.body.classList.remove('loaded_hiding');-->
+<!--  }, 1500);-->
+<!--}-->
+<!--</script>-->
+<!--<script src="{% static 'signin/js/main.js' %}"></script>-->
+<!--{% endblock %}-->
